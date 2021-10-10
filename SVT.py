@@ -96,8 +96,7 @@ right_part = np.array(right_part)
 
 # решаем систеу с разреженной матрицей
 total_csr = spr.csr_matrix((data, (row_ind,col_ind )))
-print(slin.norm(total_csr - total_csr.transpose()))
-#print(total_csr.shape, right_part.shape)
+
 x, info = slin.bicg(A = total_csr, b = right_part,x0=np.zeros(right_part.shape), tol=1e-6)
 print(info, np.linalg.norm(total_csr@x - right_part))
 #преобразем x обратно в решение и вычисляем ошибку
